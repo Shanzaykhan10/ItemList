@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun NameList(modifier: Modifier) {
     var name by remember { mutableStateOf(value = "") }
-    val nameNumberList = remember { mutableStateListOf<Pair<String,Long>>()}
+    val nameNumberList = remember { mutableStateListOf<Pair<String,String>>()}
     var empty by remember { mutableStateOf(value = false) }
     var number by remember { mutableStateOf(value = "") }
 
@@ -121,7 +121,7 @@ fun NameList(modifier: Modifier) {
                         onClick = {
                             if (name.isNotEmpty() && number.isNotEmpty()) {
                                 empty = false
-                                nameNumberList.add(Pair(name, number.toLong()))
+                                nameNumberList.add(Pair(name, number))
                                 name = ""
                                 number = ""
                             }
@@ -173,7 +173,7 @@ fun ListPreview() {
 }
 
 @Composable
-fun NameItems( index : Int ,modifier: Modifier,name: Pair<String,Long>) {
+fun NameItems( index : Int ,modifier: Modifier,name: Pair<String,String>) {
     Spacer(modifier = Modifier.padding(5.dp))
     Row( modifier = Modifier
         .background(
@@ -199,7 +199,7 @@ fun NameItems( index : Int ,modifier: Modifier,name: Pair<String,Long>) {
                 fontWeight = FontWeight.W600,
                 modifier = Modifier.padding(top = 14.dp)
             )
-            Text(text =  name.second.toString()
+            Text(text =  name.second
                 ,
                 fontSize = 30.sp,
                 color = Color.Black,
